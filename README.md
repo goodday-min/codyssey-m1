@@ -1,7 +1,8 @@
-# AI 냉장고 레시피 추천 웹서비스
+# 오늘 뭐 먹지❓ AI 냉장고 파먹기 🍴 🔎
+    AI 냉장고 레시피 추천 웹서비스   
 
-냉장고에 있는 재료를 입력하면 AI가 레시피와 식단을 추천해주는 반응형 웹서비스입니다.  
-프론트엔드는 HTML, CSS, JavaScript로 구현하고, 백엔드는 FastAPI로 개발하여 프론트엔드는 Vercel, 백엔드는 Render에 배포했습니다.
+#### 냉장고에 있는 재료를 입력하면 AI가 레시피와 식단을 추천해주는 반응형 웹서비스입니다.  
+#### 프론트엔드는 HTML, CSS, JavaScript로 구현하고, 백엔드는 FastAPI로 개발하여 프론트엔드는 Vercel, 백엔드는 Render에 배포했습니다.
 
 ---
 
@@ -22,8 +23,8 @@
 - 입력 재료 기반 **AI 식단 추천**
 - 직관적인 UI를 통한 쉬운 사용
 - 모바일 / 태블릿 / 데스크탑 환경을 지원하는 **반응형 웹**
-- FastAPI 기반 백엔드 API 연동
-- Vercel / Render 배포 환경에서 정상 동작
+- FastAPI 기반 **백엔드 API** 연동
+- **Vercel / Render 배포** 환경에서 정상 동작
 - CORS 설정을 통한 프론트엔드-백엔드 통신 문제 해결
 
 ---
@@ -47,6 +48,10 @@
 > 아래는 예시이며, 실제 이미지 경로로 교체해 주세요.
 
 ```md
+<img width="501" height="783" alt="image" src="https://github.com/user-attachments/assets/a3c61c8c-2be8-442d-a820-07222eebb3ed" />
+<img width="498" height="538" alt="image" src="https://github.com/user-attachments/assets/2751f9bf-be23-4404-b202-a3bc1008e48d" />
+<img width="490" height="763" alt="image" src="https://github.com/user-attachments/assets/ba6f2d02-77ce-4eb6-90e0-324bc21bc02d" />
+
 ![메인 화면]([스크린샷_주소])
 ![레시피 추천 화면]([스크린샷_주소])
 ![식단 추천 화면]([스크린샷_주소])
