@@ -388,7 +388,7 @@ Vercel은 정적 프론트엔드 배포뿐 아니라,
     프론트: Live Server 또는 브라우저
     백엔드: http://127.0.0.1:8000
     직접 수정 후 바로 테스트 가능
-- 배포 환경
+- 배포 환경 (배포 URL) 
     프론트: Vercel URL (https://a1-3web.vercel.app/)
     백엔드: Render URL (https://ai-recipe-backend-jxo3.onrender.com)
     실제 인터넷 주소를 통해 접근
