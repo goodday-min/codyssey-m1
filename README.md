@@ -389,32 +389,32 @@ Vercel은 정적 프론트엔드 배포뿐 아니라,
 
 개발 중에는 보통 로컬 환경에서 먼저 테스트합니다.
 
-- 로컬 환경
-    프론트: Live Server 또는 브라우저
-    백엔드: http://127.0.0.1:8000
-    직접 수정 후 바로 테스트 가능
-- 배포 환경 (배포 URL) 
-    프론트: Vercel URL (https://a1-3web.vercel.app/)
-    백엔드: Render URL (https://ai-recipe-backend-jxo3.onrender.com)
-    실제 인터넷 주소를 통해 접근
-    CORS, 환경 변수, API URL 차이 같은 문제가 발생할 수 있음
+1.로컬 환경
+    프론트: Live Server 또는 브라우저  
+    백엔드: http://127.0.0.1:8000  
+    직접 수정 후 바로 테스트 가능  
+2. 배포 환경 (배포 URL)  
+    - 프론트: Vercel URL (https://a1-3web.vercel.app/)  
+    - 백엔드: Render URL (https://ai-recipe-backend-jxo3.onrender.com)  
+    - 실제 인터넷 주소를 통해 접근  
+    - CORS, 환경 변수, API URL 차이 같은 문제가 발생할 수 있음  
     
-    예를 들어,
-    로컬에서는 아래처럼 동작하던 코드가 fetch("http://127.0.0.1:8000/recommend-recipe")
-    배포 후에는 아래처럼 수정되어야 합니다.
-    fetch("https://your-backend-url.onrender.com/recommend-recipe")
-    즉, 로컬에서 되던 기능도 배포 후에는 주소, 보안, 환경 설정 차이로 인해 다시 점검해야 합니다.
-    5-8. 배포 후 수정 및 재배포 흐름
-    배포 후 문제가 발견되면 다음 순서로 수정합니다.
+    예를 들어,  
+      로컬에서는 아래처럼 동작하던 코드가 fetch("http://127.0.0.1:8000/recommend-recipe")    
+      배포 후에는 아래처럼 수정되어야 합니다.  
+      fetch("https://your-backend-url.onrender.com/recommend-recipe")    
+      즉, 로컬에서 되던 기능도 배포 후에는 주소, 보안, 환경 설정 차이로 인해 다시 점검해야 합니다.  
+      5-8. 배포 후 수정 및 재배포 흐름  
+      배포 후 문제가 발견되면 다음 순서로 수정합니다.  
 
-- 오류 상황 확인
-    브라우저 콘솔 및 네트워크 탭 확인
-    백엔드 로그 확인
-    코드 수정
-    GitHub에 반영
-    Vercel / Render 재배포 확인
-    실제 배포 주소에서 다시 테스트
-    이 과정을 통해 로컬 개발과 실제 서비스 운영의 차이를 이해할 수 있습니다.
+3. 오류 상황 확인  
+    브라우저 콘솔 및 네트워크 탭 확인  
+    백엔드 로그 확인  
+    코드 수정  
+    GitHub에 반영  
+    Vercel / Render 재배포 확인  
+    실제 배포 주소에서 다시 테스트  
+    이 과정을 통해 로컬 개발과 실제 서비스 운영의 차이를 이해할 수 있습니다.  
   
 ### 5-8. 성능 개선  
 
