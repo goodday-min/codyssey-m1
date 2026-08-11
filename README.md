@@ -31,6 +31,10 @@
 
 ## 3. 서비스 화면 구성
 
+### 배포된 웹 서비스 (Vercel URL)
+
+https://a1-3web.vercel.app/ 
+
 ### 메인 페이지
 - 서비스 소개
 - 주요 기능 안내
@@ -45,9 +49,20 @@
 - 서비스 목적 설명
 - 제철 식재료 / 제철 음식 정보 제공
 
+- 데스크탑에서 실행
+  
 | 메인 화면 | AI 추천 화면 | 소개화면 |
 | --- | --- | --- |
 | <img width="501" height="783" alt="image" src="https://github.com/user-attachments/assets/a3c61c8c-2be8-442d-a820-07222eebb3ed" /> | <img width="499" height="794" alt="image" src="https://github.com/user-attachments/assets/636d0c3b-e210-4215-832b-949003984b7b" /> | <img width="490" height="763" alt="image" src="https://github.com/user-attachments/assets/ba6f2d02-77ce-4eb6-90e0-324bc21bc02d" /> |
+
+- 모바일에서 실행
+  
+| 메인 화면 | AI 추천 화면1 | AI 추천 화면2 | AI 추천 화면3 | 소개화면 | 
+| --- | --- | --- | --- |--- |
+| <img width="283" height="831" alt="image" src="https://github.com/user-attachments/assets/32aa8784-1405-44b5-aba5-5d655e42e798" /> | <img width="297" height="834" alt="image" src="https://github.com/user-attachments/assets/ddced869-e53a-4e25-b4d5-50c78f7c9a2d" /> | <img width="288" height="821" alt="image" src="https://github.com/user-attachments/assets/88e5821c-bd36-4797-9264-60d540fad69a" /> | <img width="288" height="834" alt="image" src="https://github.com/user-attachments/assets/f47c6b52-9155-4255-98a1-7c2f6fa2b01c" /> | <img width="283" height="825" alt="image" src="https://github.com/user-attachments/assets/976a6e45-3e1a-4717-adaa-0e2981589825" />
+ |
+
+
 
 ---
 
