@@ -1,4 +1,4 @@
-# 오늘 뭐 먹지❓ AI 냉장고 파먹기 🍴 🔎
+# 오늘 뭐 먹지❓ AI 냉장고 파먹기 🍴 
     AI 냉장고 레시피 추천 웹서비스   
 
 #### 냉장고에 있는 재료를 입력하면 AI가 레시피와 식단을 추천해주는 반응형 웹서비스입니다.  
@@ -170,6 +170,28 @@
 ---
 
 ### 5-1. 전체 구조
+
+**GitHub 저장소 구조 예시**
+Vercel에서 Python 백엔드를 인식하게 하려면 아래와 같은 구조가 필요합니다.  
+    
+    A1_3/
+    ├── api/                # 백엔드 (Vercel Serverless Functions)
+    │   └── index.py        # Python API 코드 (FastAPI 등)
+    ├── js/
+    │   ├── main.js        → 홈 화면 버튼, 공통 동작
+    │   ├── recipe.js       # 프론트엔드 로직 (API 호출) → 재료 입력값 처리, API 요청, 결과 출력
+    │   └── about.js      → About 페이지용 간단한 동작이 있으면 사용
+    ├── css/
+    │   └── style.css       # 스타일 (반응형 디자인) 전체 공통 스타일
+    ├── index.html          # 메인 페이지
+    ├── recipe.html         # 재료 입력, AI 레시피 추천 결과 표시 레시피 생성 페이지
+    ├── about.html          # 제철음식 정보 페이지
+    ├── requirements.txt    # Python 패키지 목록 (openai, fastapi 등) → FastAPI, uvicorn 등 설치 목록
+    ├── vercel.json         Vercel 배포 설정
+    ├── .env                OpenAI API 키 저장
+    └── README.md           # 프로젝트 설명서
+    └── 서비스 기획서.md    # 프로젝트 설명서
+
 
     사용자
       ↓
