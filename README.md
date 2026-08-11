@@ -45,12 +45,9 @@
 - 레시피 추천 / 식단 추천 버튼 선택
 - AI 응답 결과 출력
 
-> 아래는 예시이며, 실제 이미지 경로로 교체해 주세요.
-
-```md
-<img width="501" height="783" alt="image" src="https://github.com/user-attachments/assets/a3c61c8c-2be8-442d-a820-07222eebb3ed" />
-<img width="498" height="538" alt="image" src="https://github.com/user-attachments/assets/2751f9bf-be23-4404-b202-a3bc1008e48d" />
-<img width="490" height="763" alt="image" src="https://github.com/user-attachments/assets/ba6f2d02-77ce-4eb6-90e0-324bc21bc02d" />
+| 메인 화면 | AI 추천 화면 | 소개화면 |
+| --- | --- | --- |
+| <img width="501" height="783" alt="image" src="https://github.com/user-attachments/assets/a3c61c8c-2be8-442d-a820-07222eebb3ed" /> | <img width="498" height="538" alt="image" src="https://github.com/user-attachments/assets/2751f9bf-be23-4404-b202-a3bc1008e48d" /> | <img width="490" height="763" alt="image" src="https://github.com/user-attachments/assets/ba6f2d02-77ce-4eb6-90e0-324bc21bc02d" /> |
 
 ![메인 화면]([스크린샷_주소])
 ![레시피 추천 화면]([스크린샷_주소])
