@@ -78,10 +78,41 @@ A1_2.
 ## 📌 개발 환경 준비 
 
  - Python 3.10 이상 권장
- - git init
- - git remote add origin ""
- - 
  - 필요한 라이브러리 설치: pip install -r requirements.txt
+
+ 1. 로컬 저장소 생성
+    
+      cd 내프로젝트폴더    # 폴더로 이동
+      git init             # Git 저장소 시작 (.git 폴더 생성)
+
+ 2. GitHub 저장소 연결 : 로컬 ↔ GitHub 연결 다리 만들기
+
+      git remote add origin https://github.com/내아이디/저장소이름.git
+
+ 3. 파일 저장 (add → commit)
+
+      git add .                        # 변경된 모든 파일 스테이징
+      git commit -m "첫 번째 커밋"     # 로컬에 저장 (스냅샷 찍기)
+      
+ 4. GitHub와 동기화
+
+      **GitHub → 내 컴퓨터 (받아오기)**
+      git pull origin main
+      
+      **내 컴퓨터 → GitHub (올리기)**
+      git push origin main
+
+ ✅ 전체 흐름 한눈에 보기
+
+      [내 컴퓨터]                    [GitHub]
+         │                              │
+         │  git add .                   │
+         │  git commit -m "메시지"      │
+         │                              │
+         │  ──── git push ────────────► │
+         │  ◄─── git pull ──────────── │
+
+---
 
 ## 📌 API 키 설정 방법
 
@@ -106,11 +137,13 @@ A1_2.
 
 🔹 원칙: .env 파일 → dotenv 라이브러리 → os.getenv()로 불러오기   
 
+
+
 ---
 
 ## 📌 실행 방법  
 
-    python main.py -date 2025-10-03
+    python travel_pipeline.py -date 2026-12-31
 
 🔹입력: YYYY-MM-DD 형식의 여행 날짜 (필수)  
 🔹잘못된 날짜를 입력하면 에러 메시지와 함께 사용법이 출력됩니다.    
@@ -126,12 +159,13 @@ A1_2.
 *프로그램 실행이 완료되면 results/ 폴더에서 결과물을 확인할 수 있습니다.*  
 
 
-| 결과물 종류 | 결과물 파일명 | 결과물 파일 내용 | 
+| 결과물 | 결과물 파일명 | 결과물 파일 내용 | 
 | --- | --- | --- |     
-| 추천 결과 파일 | results/YYYY-MM-DD_step1_recommendation.json | <img width="1167" height="341" alt="image" src="https://github.com/user-attachments/assets/c50fe97b-4234-4b41-89bd-e31bcdf8a485" /> |   
-| 맛집 검색 결과 파일 | results/YYYY-MM-DD_step2_restaurants.json | <img width="593" height="755" alt="image" src="https://github.com/user-attachments/assets/2a843cbd-cdfb-48ed-be1a-5c7f2676bcd3" /> |     
-| 맛집 검색 결과 파일 | results/YYYY-MM-DD_travel_report.md | <img width="993" height="800" alt="image" src="https://github.com/user-attachments/assets/a246bb97-64dc-4b25-b28c-dc25eaef4021" /> |     
+| 추천결과 파일 | results/<br>YYYY-MM-DD_step1_recommendation.json | <img width="600" alt="image" src="https://github.com/user-attachments/assets/c50fe97b-4234-4b41-89bd-e31bcdf8a485" /> |   
+| 맛집검색결과 파일 | results/<br>YYYY-MM-DD_step2_restaurants.json | <img width="600" alt="image" src="https://github.com/user-attachments/assets/2a843cbd-cdfb-48ed-be1a-5c7f2676bcd3" /> |     
+| 최종결과 파일 | results/<br>YYYY-MM-DD_travel_report.md | <img width="600" alt="image" src="https://github.com/user-attachments/assets/a246bb97-64dc-4b25-b28c-dc25eaef4021" /> |     
 
+---
 
 ## 📌  실행 흐름 설명
 
@@ -162,6 +196,7 @@ A1_2.
  **🔹 최종 리포트 생성**  
 
     추천 정보와 맛집 정보를 모아서 Markdown 리포트를 생성하고 저장합니다.
+---
 
 ## 📌 REST API와 HTTP 메서드 설명
 
@@ -193,64 +228,35 @@ A1_2.
 | 주로 검색, 조회 기능에 사용 | 요청 본문(body)에 데이터를 담는 경우가 많음 |  
 | 파라미터가 URL에 포함되는 경우가 많음 | 이 프로젝트에서는 맛집 검색이므로 주로 GET 방식이 사용됩니다. |    
 
+---
 
 ## 📌 대표 오류와 대응 원칙
 
   외부 API 호출 시 자주 발생할 수 있는 오류와 대응 방식은 아래와 같습니다.
-  
-1) 인증 오류
-   
-       예:   
-         API 키 누락
-         잘못된 키 입력
-         권한 미설정
-    
-       대응:  
-         .env에 키가 정확히 설정되었는지 확인
-         API 서비스 활성화 여부 확인
-         인증 실패 메시지를 사용자에게 출력
+
+| 오류 종류 | 인증 오류 | 쿼터 초과 오류 | 네트워크 오류 | 파싱 오류 |
+| --- | --- | --- |--- | --- |
+| 예 | -API 키 누락<br>-잘못된 키 입력<br>-권한 미설정<br> | -일일 호출량 초과<br>-분당 요청 제한 초과 | -인터넷 연결 문제<br>-타임아웃<br>-서버 응답 지연 | -LLM이 예상 형식이 아닌 응답 반환<br>-JSON 디코딩 실패 |
+| 오류 대응 | -.env에 키가 정확히 설정되었는지 확인<br>-API 서비스 활성화 여부 확인<br>-인증 실패 메시지를 사용자에게 출력 | -재실행 전에 사용량 확인<br>-과도한 반복 호출 방지<br>-필요 시 요청 수 줄이기 | -timeout 설정<br>-예외 처리 후 오류 기록<br>-빈 결과라도 프로그램이 중단되지 않도록 설계 | -JSON 형식만 반환하도록 프롬프트를 강하게 제한<br>-파싱 실패 시 1회 재시도<br>-최종 실패 시 오류 로그 기록 |
+
 
    
 | 인증 오류 | 스크린샷 |
 | --- | --- |
-|     API 키 누락...............     | <img width="1025" height="537" alt="image" src="https://github.com/user-attachments/assets/00c8f2a2-da28-49ad-85cd-52d51d4ea5f3" /> |
+|     API 키 누락  | <img width="600" alt="image" src="https://github.com/user-attachments/assets/00c8f2a2-da28-49ad-85cd-52d51d4ea5f3" /> |
 
 
+**✅ 이 프로그램은 아래 상황에 대비해 예외 처리를 포함하고 있습니다.**
 
-2) 쿼터 초과 오류
-   
-         예:
-             일일 호출량 초과
-             분당 요청 제한 초과
+   🔹 API 키 누락 시 즉시 종료  
+   🔹 잘못된 날짜 형식 입력 시 오류 메시지 출력  
+   🔹 OpenAI JSON 파싱 실패 시 재시도  
+   🔹 Kakao API 요청 실패 시 오류 기록 후 빈 결과 처리  
+   🔹 최종 리포트 생성 실패 시 fallback Markdown 생성  
 
-         대응:
-             재실행 전에 사용량 확인
-             과도한 반복 호출 방지
-             필요 시 요청 수 줄이기
+---
    
-3) 네트워크 오류
-   
-         예:
-             인터넷 연결 문제
-             타임아웃
-             서버 응답 지연
-         
-         대응:
-             timeout 설정
-             예외 처리 후 오류 기록
-             빈 결과라도 프로그램이 중단되지 않도록 설계
-   
-4) 파싱 오류
-   
-         예:
-             LLM이 예상 형식이 아닌 응답 반환
-             JSON 디코딩 실패
-         대응:
-             JSON 형식만 반환하도록 프롬프트를 강하게 제한
-             파싱 실패 시 1회 재시도
-             최종 실패 시 오류 로그 기록
-
-## 12. 결과 파일 예시
+## 📌 결과 파일 예시
 
  1) 추천 결과 JSON
       
@@ -313,42 +319,9 @@ A1_2.
          ## 5. 오류 로그
          - 없음
 
-- 
-## 13. API 키 보안 주의사항
+---
 
-API 키는 매우 중요한 민감정보이므로 아래 사항을 반드시 지켜야 합니다.
-
-주의사항
-   API 키를 코드에 직접 작성하지 않는다.
-   .env 파일은 GitHub에 업로드하지 않는다.
-   .gitignore에 .env를 반드시 포함한다.
-   화면 캡처, 발표 자료, 제출 문서에 키가 보이지 않도록 주의한다.
-   키가 노출되었다면 즉시 폐기하고 새 키를 발급받는다. 
-   
-      예시 .gitignore
-      .env
-      venv/
-      __pycache__/
-      results/
-
-## 15. 예외 처리 요약
-
-이 프로그램은 아래 상황에 대비해 예외 처리를 포함하고 있습니다.
-
-   🔹 API 키 누락 시 즉시 종료
-   🔹 잘못된 날짜 형식 입력 시 오류 메시지 출력
-   🔹 OpenAI JSON 파싱 실패 시 재시도
-   🔹 Kakao API 요청 실패 시 오류 기록 후 빈 결과 처리
-   🔹 최종 리포트 생성 실패 시 fallback Markdown 생성
-
-## 16. 실행 예시  
-
-   python main.py -date 2025-10-03
-
-   예상 콘솔 출력:
-
-
-## 17. 향후 개선 아이디어
+## 📌 향후 개선 아이디어
 
    - 실제 날씨 API 연동
    - 지역 축제/행사 API 연동
