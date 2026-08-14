@@ -32,7 +32,7 @@ CLI 기반 Python 프로그램입니다.
 - **이미지 생성 API**로 로고 시안을 생성
 - 모든 결과물을 지정된 폴더에 JSON과 PNG 형태로 저장
 
-이번 구현에서는 텍스트 생성에 **OpenAI GPT API**, 로고 이미지 생성에 **OpenAI DALL·E API**를
+이번 구현에서는 텍스트 생성에 **OpenAI GPT API**, 로고 이미지 생성에 **OpenAI 이미지 생성 API(gpt-image-1)**를
 사용합니다.
 
 ## 2. 과제 목표
@@ -42,7 +42,7 @@ CLI 기반 Python 프로그램입니다.
 | # | 목표 | 이 프로젝트에서 확인할 수 있는 부분 |
 |---|---|---|
 | 1 | 브랜드 브리프를 입력받아 AI로 브랜드 요소를 생성하는 파이프라인을 설명할 수 있다 | `main.py`의 전체 실행 흐름 (`brief_loader` → `text_generator` → `image_generator` → `result_saver`) |
-| 2 | LLM API와 이미지 생성 API를 조합하여 텍스트+이미지 결과물을 생성하는 방법을 설명할 수 있다 | `modules/text_generator.py`(GPT), `modules/image_generator.py`(DALL·E) |
+| 2 | LLM API와 이미지 생성 API를 조합하여 텍스트+이미지 결과물을 생성하는 방법을 설명할 수 있다 | `modules/text_generator.py`(GPT), `modules/image_generator.py`(gpt-image-1) |
 | 3 | 생성된 컬러 팔레트를 시각화하여 이미지로 저장하는 방법을 설명할 수 있다 | `modules/palette_visualizer.py` (matplotlib 활용) |
 | 4 | API 호출 시 발생할 수 있는 오류 상황과 대응 방법을 설명할 수 있다 | 아래 [5. 에러 처리 가이드](#5-에러-처리-가이드) 표 참고 |
 
@@ -60,7 +60,7 @@ CLI 기반 Python 프로그램입니다.
 4. **결과 저장**
    - 모든 텍스트 결과를 JSON 파일로 저장 (`brand_result.json`)
    - 컬러 팔레트를 시각화하여 PNG 이미지로 저장 (`color_palette.png`)
-   - 로고 시안을 PNG 이미지로 저장 (`logo_1.png`, `logo_2.png`, `logo_3.png`)
+   - 로고 시안을 PNG 이미지로 저장 (`logo_01.png`, `logo_02.png`, `logo_03.png`)
 
 ## 4. 기능 요구사항
 
@@ -72,7 +72,7 @@ CLI 기반 Python 프로그램입니다.
 | 4 | 슬로건 생성 | LLM API로 톤앤매너에 맞는 슬로건/태그라인 3개 생성 | `modules/text_generator.py: generate_slogans()` |
 | 5 | 브랜드 스토리 생성 | LLM API로 탄생 배경/철학/비전을 포함한 300자 내외 스토리 생성 | `modules/text_generator.py: generate_story()` |
 | 6 | 컬러 팔레트 생성 | LLM API로 메인 컬러 1개 + 서브 컬러 2~3개(HEX) 추천, matplotlib으로 시각화하여 PNG 저장 | `modules/text_generator.py: generate_color_palette()`, `modules/palette_visualizer.py` |
-| 7 | 로고 시안 생성 | 이미지 생성 API(DALL·E)로 로고 시안 2~3개 생성 후 PNG 저장 | `modules/image_generator.py` |
+| 7 | 로고 시안 생성 | 이미지 생성 API(gpt-image-1)로 로고 시안 2~3개 생성 후 PNG 저장 | `modules/image_generator.py` |
 | 8 | 결과 저장 | 텍스트 결과는 `brand_result.json`, 이미지는 개별 PNG 파일로 출력 폴더에 저장 | `modules/result_saver.py` |
 | 9 | 에러 처리 | API 호출 실패 시 에러 메시지 출력 후 다음 단계 계속 진행 / API 키 오류 시 명확한 안내 메시지 출력 | `modules/config.py`, 각 생성 모듈의 `try/except` |
 | 10 | API 키 관리 | API 키를 코드에 직접 작성하지 않고 `.env` 파일(환경변수)에서 읽어옴 | `modules/config.py`, `.env.example` |
@@ -203,15 +203,15 @@ brand-ai-generator/
 │   ├── config.py                 # API 키 로딩 및 검증
 │   ├── brief_loader.py           # 브리프 JSON 로딩/검증
 │   ├── text_generator.py         # GPT API: 네이밍/슬로건/스토리/컬러 생성
-│   ├── image_generator.py        # DALL·E API: 로고 시안 생성
+│   ├── image_generator.py        # gpt-image-1 API: 로고 시안 생성
 │   ├── palette_visualizer.py     # matplotlib: 컬러 팔레트 시각화
 │   └── result_saver.py           # 최종 결과 JSON 저장
 └── output/                       # 실행 결과물이 저장되는 폴더 (자동 생성)
     ├── brand_result.json
     ├── color_palette.png
-    ├── logo_1.png
-    ├── logo_2.png
-    └── logo_3.png
+    ├── logo_01.png
+    ├── logo_02.png
+    └── logo_03.png
 ```
 
 ## 8. Git 명령어 정리
@@ -253,12 +253,47 @@ source venv/bin/activate
 python3 main.py
 
 # 3) 안내에 따라 입력
-브리프 JSON 파일 경로를 입력하세요 (필수): sample_brief.json
-결과물을 저장할 출력 폴더 경로를 입력하세요 (기본값: ./output): 
+브리프 파일 경로를 입력하세요: sample_brief.json
+출력 폴더 경로를 입력하세요 (엔터 시 ./output): 
 ```
+
+### 실행 결과 예시
+
+```
+$ python main.py
+
+    🎨 AI 브랜드 아이덴티티 생성기
+
+    브리프 파일 경로를 입력하세요: sample_brief.json
+    출력 폴더 경로를 입력하세요 (엔터 시 ./output): 
+
+    [1/5] 브랜드 네이밍 생성 중...
+      - 블루밍 (Blooming): 자연에서 피어나는 아름다움
+      - 소소담: 소소한 일상에 자연을 담다
+      - 어반리프 (Urban Leaf): 도시 속 자연의 싱그러움
+    [2/5] 슬로건 생성 중...
+      - "일상에 자연을 담다"
+      - "피부가 숨쉬는 순간"
+      - "자연 그대로, 당신 그대로"
+    [3/5] 브랜드 스토리 생성 중...
+      - 스토리 생성 완료 (287자)
+    [4/5] 컬러 팔레트 생성 중...
+      - 메인: #2E7D32 (Forest Green)
+      - 서브: #81C784, #E8F5E9
+      - 저장: ./output/color_palette.png
+    [5/5] 로고 시안 생성 중...
+      - 저장: ./output/logo_01.png
+      - 저장: ./output/logo_02.png
+      - 저장: ./output/logo_03.png
+
+    ✅ 완료! ./output/ 폴더를 확인하세요.
+```
+
+> API 호출이 실패하는 단계가 있어도(예: 네트워크 오류, 키 인증 실패 등) 해당 단계의 실패
+> 메시지만 출력되고 나머지 단계는 계속 진행됩니다. 자세한 내용은 [5. 에러 처리 가이드](#5-에러-처리-가이드)를 참고하세요.
 
 실행이 끝나면 `output/` 폴더(또는 직접 지정한 폴더)에 아래 파일들이 생성됩니다.
 
 - `brand_result.json` — 네이밍, 슬로건, 스토리, 컬러 정보, 생성된 파일 목록
 - `color_palette.png` — 컬러 팔레트 시각화 이미지
-- `logo_1.png`, `logo_2.png`, `logo_3.png` — AI가 생성한 로고 시안
+- `logo_01.png`, `logo_02.png`, `logo_03.png` — AI가 생성한 로고 시안
