@@ -259,6 +259,8 @@ python3 main.py
 
 ### 실행 결과 예시
 
+<img width="779" height="673" alt="image" src="https://github.com/user-attachments/assets/4d18f2dd-ac78-48ca-831f-b566f6db9c03" />
+
 ```
 $ python main.py
 
