@@ -259,7 +259,16 @@ python3 main.py
 
 ### 실행 결과 예시
 
+- 정상 화면
 <img width="779" height="673" alt="image" src="https://github.com/user-attachments/assets/4d18f2dd-ac78-48ca-831f-b566f6db9c03" />
+
+-- /output
+<img width="487" height="238" alt="image" src="https://github.com/user-attachments/assets/01a0adb4-7094-4caa-854e-eeab1f9660c0" />
+<img width="554" height="203" alt="image" src="https://github.com/user-attachments/assets/37e28edc-d3e5-468b-8b4f-b53b9a29fdc2" />
+
+-- / 2026-08-14
+<img width="604" height="213" alt="image" src="https://github.com/user-attachments/assets/7aee3b2e-7c5b-4109-af09-4e0952cb325a" />
+
 
 ```
 $ python main.py
