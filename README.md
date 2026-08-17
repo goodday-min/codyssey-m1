@@ -260,7 +260,7 @@ python3 main.py
 ### 실행 결과 예시
 
 - 정상 화면
-<img width="779" height="673" alt="image" src="https://github.com/user-attachments/assets/4d18f2dd-ac78-48ca-831f-b566f6db9c03" />
+<img width="500" height="673" alt="image" src="https://github.com/user-attachments/assets/4d18f2dd-ac78-48ca-831f-b566f6db9c03" />
 
 -- /output
 <img width="487" height="238" alt="image" src="https://github.com/user-attachments/assets/01a0adb4-7094-4caa-854e-eeab1f9660c0" />
